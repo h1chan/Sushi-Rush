@@ -89,7 +89,7 @@ Sushi-Rush/
 
 ---
 
-## 🎨 Customization — где что менять
+## 🎨 Customization
 
 | What to change | Where to look |
 |----------------|---------------|
@@ -112,19 +112,6 @@ Sushi-Rush/
 @media screen and (width <= 1150px) { /* Tablet / mobile slide-in menu */ }
 @media screen and (width >= 1150px) { /* Desktop layout + larger type scale */ }
 ```
-
-> ⚠️ No 2K rules yet — `styles.css` ends with an empty `/* For 2K resolutions */` stub (see Roadmap).
-
----
-
-## 🗺 Roadmap
-
-- [ ] Contact section (nav link + CSS stub exist, markup missing)
-- [ ] Footer (empty `<footer>` in markup)
-- [ ] Scroll-up button (only comment stubs in HTML/JS/CSS)
-- [ ] Active nav-link highlighting on scroll
-- [ ] ScrollReveal animations (`<script src="">` is currently empty)
-- [ ] 2K resolution styles
 
 ---
 
