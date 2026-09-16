@@ -1,7 +1,7 @@
 # 🍣 Sushi Rush
 
 > Responsive sushi restaurant website built following **Bedimcode**'s tutorial.  
-> Vanilla HTML/CSS/JS, Swiper menu tabs, mobile-first navigation, scroll animations.  
+> Vanilla HTML/CSS/JS, Swiper menu tabs, mobile-first navigation, scroll header effects.  
 > Fresh code, fresher sushi.
 
 <p align="center">
@@ -24,27 +24,37 @@
 
 ## ✨ Features
 
-- **Fully Responsive** — mobile-first, breakpoints at 320px, 540px, 1150px
-- **Swiper Menu Tabs** — 5 categories (Sushi, Nigiri, Ramen, Udon, Others) with thumbnail navigation
+- **Fully Responsive** — mobile-first, modern range syntax: `<=320px`, `>=540px`, `<=1150px`, `>=1150px`
+- **Swiper Menu** — tab slider + content slider synced via `thumbs`, `loop: true` (see `main.js` → `swiperTabs` / `SwiperMenu`)
 - **Mobile Hamburger Menu** — slide-in nav, auto-closes on link click
-- **Scroll Header** — header style changes on scroll
-- **CSS Custom Properties** — theming, responsive typography
+- **Scroll Header** — shadow (`.scroll-header`) appears after 50px of scroll
+- **CSS Custom Properties** — full theme in `:root` (`styles.css`), type scale grows at `>=1150px`
 - **Vanilla Stack** — zero frameworks, no build step
-- **Semantic & Accessible** — semantic HTML, alt texts, focus states
-- **Japanese Accents** — kanji decorations, sakura & leaf ornaments
+- **Japanese Details** — kanji headings, sakura & leaf SVG ornaments reused across sections
+
+---
+
+## 🍱 Sections & Content
+
+| Section | Anchor | What's inside (`index.html`) |
+|---------|--------|------------------------------|
+| Home | `#home` | Hero title, description, Order CTA, 6 dish images, kanji 美味 |
+| About | `#about` | Subtitle + title, 10-years story text, Special Menu CTA, photo |
+| Menu | `#menu` | 5 tab categories × 3 dishes: Sushi, Nigiri, Ramen, Udon, Others (demo prices) |
+| Special | `#new` | Sashimi Oishi spotlight, description, 5 images |
 
 ---
 
 ## 🛠 Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| HTML5 | Semantic markup |
-| CSS3 | Custom properties, Grid, Flexbox, Animations |
-| JavaScript (ES6+) | DOM, Swiper init, Menu & header logic |
-| [Swiper](https://swiperjs.com/) | Menu tabs + thumbnail sliders |
-| [Remixicon](https://remixicon.com/) | Icon font |
-| [Google Fonts](https://fonts.google.com/) | Montserrat, Lora |
+| Technology | Version / Details | Where |
+|------------|-------------------|-------|
+| HTML5 | Semantic markup | `index.html` |
+| CSS3 | Custom properties, Grid, Flexbox, transitions | `assets/css/styles.css` |
+| JavaScript (ES6+) | DOM, Swiper init, menu & header logic | `assets/js/main.js` |
+| [Swiper](https://swiperjs.com/) | 12 via jsDelivr | Menu `tabs` + `content` sliders |
+| [Remixicon](https://remixicon.com/) | 4.6.0 via cdnjs | Menu open/close icons |
+| [Google Fonts](https://fonts.google.com/) | Montserrat + Lora, via `@import` in CSS | `--body-font`, `--second-font` |
 
 ---
 
@@ -67,41 +77,54 @@ No `npm install`, `build`, or dependencies — pure frontend.
 
 ```
 Sushi-Rush/
-├── index.html           # Entry point
+├── index.html           # Entry point (Home · About · Menu · Special)
 ├── assets/
 │   ├── css/
-│   │   └── styles.css   # All styles
+│   │   └── styles.css   # All styles (~1070 lines)
 │   ├── js/
-│   │   └── main.js      # All logic
-│   └── img/             # Dishes, decorations, favicon, preview
+│   │   └── main.js      # Menu, header, Swiper (~60 lines)
+│   └── img/             # Dishes (home/menu/new), decor SVGs, favicon, preview
 └── README.md
 ```
 
-Sections in `index.html`: Home · About · Menu · Special (Sashimi Oishi).
-
 ---
 
-## 🎨 Customization
+## 🎨 Customization — где что менять
 
 | What to change | Where to look |
 |----------------|---------------|
-| Brand colors | `:root` in `styles.css` (`--first-color`, `--first-color-alt`, `--body-color`...) |
-| Fonts | `@import` in `styles.css` + `--body-font`, `--second-font` |
-| Dishes & prices | `index.html` → `menu__card` blocks |
-| Menu tabs | `main.js` → Swiper configs (`menu__tabs`, `menu__content`) |
-| Content | `index.html` (texts, links, images) |
+| Brand colors | `:root` in `styles.css` (`--first-color`, `--body-color`, `--container-color`...) |
+| Fonts | `@import` at top of `styles.css` + `--body-font`, `--second-font` |
+| Dishes & prices | `index.html` → `menu__card` blocks (name / price / stock) |
+| Menu tabs slider | `main.js` → `swiperTabs` + `SwiperMenu` (thumbs sync, `loop`) |
+| Header shadow trigger | `main.js` → `scrollHeader` (`scrollY >= 50`) |
+| Mobile menu breakpoint | `styles.css` → `@media (width <= 1150px)` (`.nav__menu`) |
+| Type scale | `styles.css` → `@media (width >= 1150px)` (`:root` font sizes) |
 
 ---
 
 ## 📱 Responsive Breakpoints
 
 ```css
-/* Mobile First → */
-@media screen and (width <= 320px)  { /* Small phones */ }
-@media screen and (width >= 540px)  { /* Large phones / small tablets */ }
-@media screen and (width <= 1150px) { /* Tablet / mobile menu */ }
-@media screen and (width >= 1150px) { /* Desktop */ }
+/* Mobile First, range syntax → */
+@media screen and (width <= 320px)  { /* Small phones: blob + kanji scale-down */ }
+@media screen and (width >= 540px)  { /* Grids lock to 400px centered columns */ }
+@media screen and (width <= 1150px) { /* Tablet / mobile slide-in menu */ }
+@media screen and (width >= 1150px) { /* Desktop layout + larger type scale */ }
 ```
+
+> ⚠️ No 2K rules yet — `styles.css` ends with an empty `/* For 2K resolutions */` stub (see Roadmap).
+
+---
+
+## 🗺 Roadmap
+
+- [ ] Contact section (nav link + CSS stub exist, markup missing)
+- [ ] Footer (empty `<footer>` in markup)
+- [ ] Scroll-up button (only comment stubs in HTML/JS/CSS)
+- [ ] Active nav-link highlighting on scroll
+- [ ] ScrollReveal animations (`<script src="">` is currently empty)
+- [ ] 2K resolution styles
 
 ---
 
