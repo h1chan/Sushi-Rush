@@ -110,7 +110,8 @@ Original design & tutorial by Bedimcode — thank you for the amazing content!
 
 ## 📄 License
 
-MIT — free to use, modify, distribute.
+[MIT License](LICENSE) — free to use, modify, distribute.  
+Keep a copy of the license when forking.
 
 ---
 
