@@ -4,6 +4,14 @@
 > Vanilla HTML/CSS/JS, Swiper menu tabs, mobile-first navigation, scroll animations.  
 > Fresh code, fresher sushi.
 
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript"/>
+  <img src="https://img.shields.io/badge/Swiper-6332F6?logo=swiper&logoColor=white" alt="Swiper"/>
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License"/>
+</p>
+
 ---
 
 ## 📸 Preview
