@@ -229,7 +229,9 @@ img {
 }
 
 /* Active link */
-
+.active-link{
+  color: var(--first-color);
+}
 
 /*=============== HOME SECTION ===============*/
 .home__container{
@@ -889,13 +891,43 @@ img {
 }
 
 /*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: .6rem;
+  background-color: hsl(34, 32%, 75%);
+}
 
+::-webkit-scrollbar-thumb{
+  background-color: hsl(34, 32%, 65%);
+}
+
+::-webkit-scrollbar:hover{
+  background-color: hsl(34, 32%, 55%);
+}
 
 /*=============== SCROLL UP ===============*/
+.scrollup{
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: var(--body-color);
+  box-shadow: 0 4px 16px hsla(0, 0%, 0%, .15);
+  color: var(--title-color);
+  display: inline-flex;
+  padding: 6px;
+  font-size: 1.25rem;
+  border-radius: .25rem;
+  z-index: var(--z-tooltip);
+  transition: bottom .4s, transform .4s;
+}
 
+.scrollup:hover{
+  transform: translateY(-.5rem);
+}
 
 /* Show Scroll Up */
-
+.show-scroll{
+  bottom: 3rem;
+}
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices <> */
@@ -1259,9 +1291,22 @@ img {
     font-size: var(--h2-font-size);
     justify-self: flex-start;
   }
+  .footer__social{
+    order: 1;
+    justify-self: flex-end;
+  }
   .footer__copy{
     margin: 0;
+  }
+
+  .scrollup{
+    right: 3rem;
   }
 }
 
 /* For 2K resolutions <> */
+@media screen and (width >= 2048px){
+  body{
+    zoom: 120%;
+  }
+}

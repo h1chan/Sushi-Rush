@@ -1,7 +1,7 @@
 # 🍣 Sushi Rush
 
 > Responsive sushi restaurant website built following **Bedimcode**'s tutorial.  
-> Vanilla HTML/CSS/JS, Swiper menu tabs, mobile-first navigation, scroll header effects.  
+> Vanilla HTML/CSS/JS, Swiper menu tabs, ScrollReveal animations, mobile-first navigation.  
 > Fresh code, fresher sushi.
 
 <p align="center">
@@ -24,10 +24,15 @@
 
 ## ✨ Features
 
-- **Fully Responsive** — mobile-first, modern range syntax: `<=320px`, `>=540px`, `<=1150px`, `>=1150px`
+- **Fully Responsive** — mobile-first, modern range syntax: `<=320px`, `>=540px`, `<=1150px`, `>=1150px`, `>=2048px` (2K via `zoom: 120%`)
 - **Swiper Menu** — tab slider + content slider synced via `thumbs`, `loop: true` (see `main.js` → `swiperTabs` / `SwiperMenu`)
+- **ScrollReveal Animations** — `origin: bottom, distance: 60px, duration: 1500`, per-section reveals (`main.js` → `sr.reveal`)
+- **Scroll-Up Button** — appears after 350px of scroll
+- **Active Nav Links** — menu item highlights as you scroll through sections
 - **Mobile Hamburger Menu** — slide-in nav, auto-closes on link click
 - **Scroll Header** — shadow (`.scroll-header`) appears after 50px of scroll
+- **Contact + Newsletter** — order section with socials, address/phones, subscribe form
+- **Full Footer** — logo, socials, copyright
 - **CSS Custom Properties** — full theme in `:root` (`styles.css`), type scale grows at `>=1150px`
 - **Vanilla Stack** — zero frameworks, no build step
 - **Japanese Details** — kanji headings, sakura & leaf SVG ornaments reused across sections
@@ -42,6 +47,9 @@
 | About | `#about` | Subtitle + title, 10-years story text, Special Menu CTA, photo |
 | Menu | `#menu` | 5 tab categories × 3 dishes: Sushi, Nigiri, Ramen, Udon, Others (demo prices) |
 | Special | `#new` | Sashimi Oishi spotlight, description, 5 images |
+| Contact | `#contact` | Order CTA, address/phones, Messenger/WhatsApp/mail links, newsletter form |
+
+Plus: slide-in header nav, footer, scroll-up button.
 
 ---
 
@@ -51,9 +59,10 @@
 |------------|-------------------|-------|
 | HTML5 | Semantic markup | `index.html` |
 | CSS3 | Custom properties, Grid, Flexbox, transitions | `assets/css/styles.css` |
-| JavaScript (ES6+) | DOM, Swiper init, menu & header logic | `assets/js/main.js` |
+| JavaScript (ES6+) | DOM, Swiper, ScrollReveal, menu/scroll logic | `assets/js/main.js` |
 | [Swiper](https://swiperjs.com/) | 12 via jsDelivr | Menu `tabs` + `content` sliders |
-| [Remixicon](https://remixicon.com/) | 4.6.0 via cdnjs | Menu open/close icons |
+| [ScrollReveal](https://scrollrevealjs.org/) | 4.0.0 via unpkg | `sr = ScrollReveal({...})` in `main.js` |
+| [Remixicon](https://remixicon.com/) | 4.6.0 via cdnjs | Menu, contact, footer, scroll-up icons |
 | [Google Fonts](https://fonts.google.com/) | Montserrat + Lora, via `@import` in CSS | `--body-font`, `--second-font` |
 
 ---
@@ -77,12 +86,12 @@ No `npm install`, `build`, or dependencies — pure frontend.
 
 ```
 Sushi-Rush/
-├── index.html           # Entry point (Home · About · Menu · Special)
+├── index.html           # Entry point (Home · About · Menu · Special · Contact)
 ├── assets/
 │   ├── css/
-│   │   └── styles.css   # All styles (~1070 lines)
+│   │   └── styles.css   # All styles (~1310 lines)
 │   ├── js/
-│   │   └── main.js      # Menu, header, Swiper (~60 lines)
+│   │   └── main.js      # Menu, Swiper, reveal, scroll (~128 lines)
 │   └── img/             # Dishes (home/menu/new), decor SVGs, favicon, preview
 └── README.md
 ```
@@ -97,7 +106,12 @@ Sushi-Rush/
 | Fonts | `@import` at top of `styles.css` + `--body-font`, `--second-font` |
 | Dishes & prices | `index.html` → `menu__card` blocks (name / price / stock) |
 | Menu tabs slider | `main.js` → `swiperTabs` + `SwiperMenu` (thumbs sync, `loop`) |
+| Scroll animations | `main.js` → `ScrollReveal({...})` + `sr.reveal(...)` per section |
+| Scroll-up trigger | `main.js` → `scrollUp` (`scrollY >= 350`) |
+| Active link offset | `main.js` → `scrollActive` (`offsetTop - 50`) |
 | Header shadow trigger | `main.js` → `scrollHeader` (`scrollY >= 50`) |
+| Newsletter form | `index.html` → `contact__form` (input + button) |
+| Footer copy | `index.html` → `footer__copy` |
 | Mobile menu breakpoint | `styles.css` → `@media (width <= 1150px)` (`.nav__menu`) |
 | Type scale | `styles.css` → `@media (width >= 1150px)` (`:root` font sizes) |
 
@@ -111,6 +125,7 @@ Sushi-Rush/
 @media screen and (width >= 540px)  { /* Grids lock to 400px centered columns */ }
 @media screen and (width <= 1150px) { /* Tablet / mobile slide-in menu */ }
 @media screen and (width >= 1150px) { /* Desktop layout + larger type scale */ }
+@media screen and (width >= 2048px) { /* 2K: body zoom 120% */ }
 ```
 
 ---
